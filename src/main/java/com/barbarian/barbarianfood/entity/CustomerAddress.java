@@ -11,10 +11,10 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "ADDRESSES")
+@Table(name = "customer_addresses")
 public class CustomerAddress implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
     private String id;
     private String street;
@@ -23,4 +23,9 @@ public class CustomerAddress implements Serializable {
     private String voivodeship;
     private String city;
     private String phoneNumber;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "customer_id")
+    private CustomerBase customerBase;
 }

@@ -11,10 +11,10 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "CUSTOMERS")
+@Table(name = "customers")
 public class CustomerBase implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
     private String id;
     private String name;
@@ -22,4 +22,10 @@ public class CustomerBase implements Serializable {
     @Column(unique = true)
     private String email;
     private String password;
+
+    @OneToOne(mappedBy = "customerBase", cascade = CascadeType.ALL)
+    private CustomerAddress address;
+
+    @OneToOne(mappedBy = "customerBase", cascade = CascadeType.ALL)
+    private CustomerPayment payments;
 }

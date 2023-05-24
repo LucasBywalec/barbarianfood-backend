@@ -13,7 +13,6 @@ public class AuthController implements AuthApi {
     @Autowired
     AuthService authService;
 
-
     @Override
     public ResponseEntity<Object> signIn(SignInRequest signInRequest) {
         return authService.authenticateUser(signInRequest);

@@ -1,6 +1,7 @@
 package com.barbarian.barbarianfood.service;
 
 import com.barbarian.barbarianfood.authentication.JwtAuth;
+import com.barbarian.barbarianfood.entity.CustomerBase;
 import com.barbarian.barbarianfood.repository.CustomerRepository;
 import com.barbarian.barbarianfood.service.converters.AuthServiceConverter;
 import com.barbarian.barbarianfood.service.validator.AuthServiceValidator;
@@ -12,6 +13,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +42,7 @@ public class AuthService {
     }
 
     public ResponseEntity<Object> authenticateUser(final SignInRequest signInRequest) {
-        var user = customerRepository.findByEmail(signInRequest.getEmail());
+        Optional<CustomerBase> user = customerRepository.findByEmail(signInRequest.getEmail());
         if(user.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Given credentials do not match any account");
         }
@@ -49,8 +54,9 @@ public class AuthService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Given credentials do not match any account");
         }
 
-        String token = jwtAuth.generateToken(signInRequest.getEmail()); //TODO
+        Map<String, String> response = new HashMap<>();
+        response.put("token", jwtAuth.generateToken(user.get().getId()));
 
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok(response);
     }
 }

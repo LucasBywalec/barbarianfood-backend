@@ -32,7 +32,7 @@ public class JwtAuth {
                 .compact();
     }
 
-    public String getUsernameFromToken(String token) {
+    public String getIdFromToken(String token) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(secretKey.getBytes())
                 .build()
@@ -43,16 +43,16 @@ public class JwtAuth {
     }
 
     public boolean validateToken(String token, String email) {
-        String tokenUsername = getUsernameFromToken(token);
-        return (tokenUsername.equals(email) && !isTokenExpired(token));
+        String tokenId = getIdFromToken(token);
+        return (tokenId.equals(email) && !isTokenExpired(token));
     }
 
-    private boolean isTokenExpired(String token) {
+    public boolean isTokenExpired(String token) {
         Date expirationDate = getExpirationDateFromToken(token);
         return expirationDate.before(new Date());
     }
 
-    private Date getExpirationDateFromToken(String token) {
+    public Date getExpirationDateFromToken(String token) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(secretKey.getBytes())
                 .build()

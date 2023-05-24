@@ -12,13 +12,18 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "PAYMENTS")
+@Table(name = "customer_payments")
 public class CustomerPayment implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
     private String creditCardNumber;
     private String creditCardOwner;
     private LocalDate creditCardExpDate;
     private String creditCardSecret;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "customer_id")
+    private CustomerBase customerBase;
 }
