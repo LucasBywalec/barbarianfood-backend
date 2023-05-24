@@ -26,6 +26,10 @@ public class AuthService {
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(errorMessage);
         }
 
+        if(customerRepository.findByEmail(request.getEmail()).isPresent()){
+            return ResponseEntity.status(HttpStatus.valueOf(422)).body("Account with such email already exists");
+        }
+
         CustomerBase customerBase = AuthServiceConverter.SignUpRequestIntoCustomerBase(request, passwordEncoder);
         customerRepository.save(customerBase);
 

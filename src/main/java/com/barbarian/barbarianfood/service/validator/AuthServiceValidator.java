@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class AuthServiceValidator {
     public boolean validateSignUpRequest(final SignUpRequest request){
         String email = request.getEmail();
-        if(email == null || email.isEmpty() || isEmailValid(email)){
+        if(email == null || email.isEmpty() || !isEmailValid(email)){
             return false;
         }
         String name = request.getName();
@@ -20,7 +20,7 @@ public class AuthServiceValidator {
             return false;
         }
         String password = request.getPassword();
-        if(password == null || password.isEmpty() || isPasswordValid(password)){
+        if(password == null || password.isEmpty() || !isPasswordValid(password)){
             return false;
         }
         return true;
@@ -28,15 +28,12 @@ public class AuthServiceValidator {
 
     public boolean isPasswordMatching(
             final String givenPassword, final String originalPassword, final PasswordEncoder passwordEncoder){
-        String hashedPassword = passwordEncoder.encode(givenPassword);
 
-        System.out.println(hashedPassword + " " + originalPassword);
-
-        return hashedPassword.equals(originalPassword);
+        return passwordEncoder.matches(givenPassword, originalPassword);
     }
 
     private boolean isPasswordValid(final String password) {
-        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
         return password.matches(regex);
     }
 
