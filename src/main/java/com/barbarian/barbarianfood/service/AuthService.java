@@ -1,6 +1,5 @@
 package com.barbarian.barbarianfood.service;
 
-import com.barbarian.barbarianfood.entity.CustomerBase;
 import com.barbarian.barbarianfood.repository.CustomerRepository;
 import com.barbarian.barbarianfood.service.converters.AuthServiceConverter;
 import com.barbarian.barbarianfood.service.validator.AuthServiceValidator;
@@ -21,7 +20,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
 
     public ResponseEntity<Object> createCustomer(final SignUpRequest request) {
-        if(!AuthServiceValidator.validateSignUpRequest(request)){
+        if(!AuthServiceValidator.isSignUpRequestValid(request)){
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("Invalid data provided");
         }
 

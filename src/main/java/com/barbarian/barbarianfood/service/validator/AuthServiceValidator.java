@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @UtilityClass
 public class AuthServiceValidator {
-    public boolean validateSignUpRequest(final SignUpRequest request){
+    public boolean isSignUpRequestValid(final SignUpRequest request){
         String email = request.getEmail();
         if(email == null || email.isBlank() || !isEmailValid(email)){
             return false;

@@ -1,7 +1,9 @@
 package com.barbarian.barbarianfood.service.converters;
 
 import com.barbarian.barbarianfood.entity.CustomerAddress;
+import com.barbarian.barbarianfood.entity.CustomerPayment;
 import com.zaiapi.openapi.model.AddressSettingsRequest;
+import com.zaiapi.openapi.model.PaymentSettingsRequest;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -16,5 +18,9 @@ public class SettingsServiceConverter {
                 .voivodeship(address.getVoivodeship())
                 .postalCode(address.getPostalCode())
                 .build();
+    }
+
+    public static CustomerPayment paymentSettingsRequestToCustomerPayment(PaymentSettingsRequest request) {
+        return null; //TODO
     }
 }

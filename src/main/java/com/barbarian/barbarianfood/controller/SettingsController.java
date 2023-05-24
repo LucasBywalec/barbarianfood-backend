@@ -5,6 +5,7 @@ import com.zaiapi.openapi.api.SettingsApi;
 import com.zaiapi.openapi.model.AddressSettingsRequest;
 import com.zaiapi.openapi.model.PaymentSettingsRequest;
 import com.zaiapi.openapi.model.ProfileSettingsRequest;
+import com.zaiapi.openapi.model.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +26,7 @@ public class SettingsController implements SettingsApi {
     }
 
     @Override
-    public ResponseEntity<Object> editProfileInformation(ProfileSettingsRequest profileSettingsRequest) {
+    public ResponseEntity<Object> editProfileInformation(SignUpRequest signUpRequest) {
         return null;
     }
 }

@@ -1,6 +1,7 @@
 package com.barbarian.barbarianfood.service.validator;
 
 import com.zaiapi.openapi.model.AddressSettingsRequest;
+import com.zaiapi.openapi.model.PaymentSettingsRequest;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -26,5 +27,9 @@ public class SettingsServiceValidator {
         }
 
         return true;
+    }
+
+    public static boolean isPaymentValid(PaymentSettingsRequest request) {
+        return true; //TODO
     }
 }
