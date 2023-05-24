@@ -15,7 +15,7 @@ public class AuthController implements AuthApi {
 
     @Override
     public ResponseEntity<Object> signIn(SignInRequest signInRequest) {
-        return null;
+        return authService.authenticateUser(signInRequest);
     }
 
     @Override

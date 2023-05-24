@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @UtilityClass
 public class AuthServiceConverter {
 
-    public CustomerBase SignUpRequestIntoCustomerBase(SignUpRequest request, PasswordEncoder passwordEncoder) {
+    public CustomerBase SignUpRequestIntoCustomerBase(final SignUpRequest request, final PasswordEncoder passwordEncoder) {
         String hashedPassword = passwordEncoder.encode(request.getPassword());
 
         return CustomerBase.builder()
