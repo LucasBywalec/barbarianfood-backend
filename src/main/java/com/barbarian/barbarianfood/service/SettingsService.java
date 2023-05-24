@@ -4,15 +4,12 @@ import com.barbarian.barbarianfood.repository.AddressRepository;
 import com.barbarian.barbarianfood.repository.CustomerRepository;
 import com.barbarian.barbarianfood.repository.PaymentRepository;
 import com.barbarian.barbarianfood.service.converters.SettingsServiceConverter;
-import com.barbarian.barbarianfood.service.validator.AuthServiceValidator;
 import com.barbarian.barbarianfood.service.validator.SettingsServiceValidator;
 import com.zaiapi.openapi.model.AddressSettingsRequest;
 import com.zaiapi.openapi.model.PaymentSettingsRequest;
 import com.zaiapi.openapi.model.ProfileSettingsRequest;
-import com.zaiapi.openapi.model.SignUpRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -47,12 +44,12 @@ public class SettingsService {
         return ResponseEntity.ok("Success");
     }
 
-    public ResponseEntity<Object> editProfileInformation(SignUpRequest request){
-        if(!AuthServiceValidator.isSignUpRequestValid(request)){
+    public ResponseEntity<Object> editProfileInformation(ProfileSettingsRequest request){
+        if(!SettingsServiceValidator.isProfileSettingsRequestValid(request)){
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("Invalid data provided");
         }
 
-        //update user based on id
+//        customerRepository.
 
         return ResponseEntity.ok("Success");
     }

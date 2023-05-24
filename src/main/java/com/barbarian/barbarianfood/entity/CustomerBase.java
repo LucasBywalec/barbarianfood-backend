@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Table(name = "CUSTOMERS")
 public class CustomerBase implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private String id;
     private String name;

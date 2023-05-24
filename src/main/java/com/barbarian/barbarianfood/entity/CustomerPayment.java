@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Table(name = "PAYMENTS")
 public class CustomerPayment implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private String creditCardNumber;
     private String creditCardOwner;

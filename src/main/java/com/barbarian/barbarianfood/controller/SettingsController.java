@@ -22,11 +22,11 @@ public class SettingsController implements SettingsApi {
 
     @Override
     public ResponseEntity<Object> editPaymentInformation(PaymentSettingsRequest paymentSettingsRequest) {
-        return null;
+        return settingsService.editPaymentInformation(paymentSettingsRequest);
     }
 
     @Override
-    public ResponseEntity<Object> editProfileInformation(SignUpRequest signUpRequest) {
-        return null;
+    public ResponseEntity<Object> editProfileInformation(ProfileSettingsRequest profileSettingsRequest) {
+        return settingsService.editProfileInformation(profileSettingsRequest);
     }
 }

@@ -21,6 +21,11 @@ public class SettingsServiceConverter {
     }
 
     public static CustomerPayment paymentSettingsRequestToCustomerPayment(PaymentSettingsRequest request) {
-        return null; //TODO
+        return CustomerPayment.builder()
+                .creditCardNumber(request.getCreditCardNumber())
+                .creditCardExpDate(request.getCreditCardExpDate())
+                .creditCardOwner(request.getCreditCardOwner())
+                .creditCardSecret(request.getCreditCardSecret())
+                .build();
     }
 }

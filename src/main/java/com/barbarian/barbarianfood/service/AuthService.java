@@ -1,5 +1,6 @@
 package com.barbarian.barbarianfood.service;
 
+import com.barbarian.barbarianfood.authentication.JwtAuth;
 import com.barbarian.barbarianfood.repository.CustomerRepository;
 import com.barbarian.barbarianfood.service.converters.AuthServiceConverter;
 import com.barbarian.barbarianfood.service.validator.AuthServiceValidator;
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     @Autowired
     private final CustomerRepository customerRepository;
+    @Autowired
+    private final JwtAuth jwtAuth;
     private final PasswordEncoder passwordEncoder;
 
     public ResponseEntity<Object> createCustomer(final SignUpRequest request) {
@@ -45,6 +48,8 @@ public class AuthService {
                 passwordEncoder)){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Given credentials do not match any account");
         }
+
+        String token = jwtAuth.generateToken(signInRequest.getEmail()); //TODO
 
         return ResponseEntity.ok("Success");
     }
