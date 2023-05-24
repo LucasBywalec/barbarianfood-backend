@@ -8,19 +8,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class AuthServiceValidator {
     public boolean validateSignUpRequest(final SignUpRequest request){
         String email = request.getEmail();
-        if(email == null || email.isEmpty() || !isEmailValid(email)){
+        if(email == null || email.isBlank() || !isEmailValid(email)){
             return false;
         }
         String name = request.getName();
-        if(name == null || name.isEmpty()){
+        if(name == null || name.isBlank()){
             return false;
         }
         String surname = request.getSurname();
-        if(surname == null || surname.isEmpty()){
+        if(surname == null || surname.isBlank()){
             return false;
         }
         String password = request.getPassword();
-        if(password == null || password.isEmpty() || !isPasswordValid(password)){
+        if(password == null || password.isBlank() || !isPasswordValid(password)){
             return false;
         }
         return true;
