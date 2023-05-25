@@ -3,29 +3,30 @@ package com.barbarian.barbarianfood.controller;
 import com.barbarian.barbarianfood.service.SettingsService;
 import com.zaiapi.openapi.api.SettingsApi;
 import com.zaiapi.openapi.model.AddressSettingsRequest;
+import com.zaiapi.openapi.model.DefaultResponse;
 import com.zaiapi.openapi.model.PaymentSettingsRequest;
 import com.zaiapi.openapi.model.ProfileSettingsRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class SettingsController implements SettingsApi {
-    @Autowired
-    SettingsService settingsService;
+    private final SettingsService settingsService;
 
     @Override
-    public ResponseEntity<Object> editAddressInformation(AddressSettingsRequest addressSettingsRequest) {
+    public ResponseEntity<DefaultResponse> editAddressInformation(AddressSettingsRequest addressSettingsRequest) {
         return settingsService.editAddressInformation(addressSettingsRequest);
     }
 
     @Override
-    public ResponseEntity<Object> editPaymentInformation(PaymentSettingsRequest paymentSettingsRequest) {
+    public ResponseEntity<DefaultResponse> editPaymentInformation(PaymentSettingsRequest paymentSettingsRequest) {
         return settingsService.editPaymentInformation(paymentSettingsRequest);
     }
 
     @Override
-    public ResponseEntity<Object> editProfileInformation(ProfileSettingsRequest profileSettingsRequest) {
+    public ResponseEntity<DefaultResponse> editProfileInformation(ProfileSettingsRequest profileSettingsRequest) {
         return settingsService.editProfileInformation(profileSettingsRequest);
     }
 }

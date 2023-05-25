@@ -1,25 +1,29 @@
 package com.barbarian.barbarianfood.controller;
 
+import com.barbarian.barbarianfood.service.OfferService;
 import com.zaiapi.openapi.api.OfferApi;
-import com.zaiapi.openapi.model.GetOfferDetailsResponse;
-import com.zaiapi.openapi.model.GetOfferResponse;
+import com.zaiapi.openapi.model.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class OfferController implements OfferApi {
+    private final OfferService offerService;
+
     @Override
     public ResponseEntity<GetOfferResponse> getOffer() {
         return null;
     }
 
     @Override
-    public ResponseEntity<GetOfferDetailsResponse> getOfferDetails(String s) {
+    public ResponseEntity<GetOfferDetailsResponse> getOfferDetails(String offerId) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Object> subscribeToOffer(String s) {
+    public ResponseEntity<DefaultResponse> subscribeToOffer(String offerId, SubscribeRequest subscribeRequest) {
         return null;
     }
 }
