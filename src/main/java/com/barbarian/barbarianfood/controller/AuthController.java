@@ -16,12 +16,12 @@ public class AuthController implements AuthApi {
     private final AuthService authService;
 
     @Override
-    public ResponseEntity<SignInResponse> signIn(SignInRequest signInRequest) {
+    public ResponseEntity<SignInResponse> signIn(final SignInRequest signInRequest) {
         return authService.authenticateUser(signInRequest);
     }
 
     @Override
-    public ResponseEntity<DefaultResponse> signUp(SignUpRequest signUpRequest) {
+    public ResponseEntity<DefaultResponse> signUp(final SignUpRequest signUpRequest) {
         return authService.createCustomer(signUpRequest);
     }
 }

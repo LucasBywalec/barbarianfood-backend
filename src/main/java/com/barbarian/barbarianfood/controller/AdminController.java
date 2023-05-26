@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AdminController implements AdminApi {
     @Override
-    public ResponseEntity<DefaultResponse> addNewOffer(AddNewOfferRequest addNewOfferRequest) {
+    public ResponseEntity<DefaultResponse> addNewOffer(final AddNewOfferRequest addNewOfferRequest) {
         return null;
     }
 

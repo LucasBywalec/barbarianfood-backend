@@ -18,7 +18,7 @@ public class JwtAuth {
     @Value("${jwt.expiration}")
     private long expiration;
 
-    public String generateToken(String email) {
+    public String generateToken(final String email) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + expiration);
 
@@ -32,7 +32,7 @@ public class JwtAuth {
                 .compact();
     }
 
-    public String getIdFromToken(String token) {
+    public String getIdFromToken(final String token) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(secretKey.getBytes())
                 .build()
@@ -42,17 +42,17 @@ public class JwtAuth {
         return claims.getSubject();
     }
 
-    public boolean validateToken(String token, String email) {
-        String tokenId = getIdFromToken(token);
-        return (tokenId.equals(email) && !isTokenExpired(token));
-    }
+//    public boolean validateToken(final String token, final String email) {
+//        String tokenId = getIdFromToken(token);
+//        return (tokenId.equals(email) && !isTokenExpired(token));
+//    } PROBABLY TO BE DELETED LATER
 
-    public boolean isTokenExpired(String token) {
+    public boolean isTokenExpired(final String token) {
         Date expirationDate = getExpirationDateFromToken(token);
         return expirationDate.before(new Date());
     }
 
-    public Date getExpirationDateFromToken(String token) {
+    public Date getExpirationDateFromToken(final String token) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(secretKey.getBytes())
                 .build()

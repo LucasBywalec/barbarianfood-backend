@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories("com.barbarian.barbarianfood.repository")
 public class BarbarianfoodApplication {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         SpringApplication.run(BarbarianfoodApplication.class, args);
     }
 

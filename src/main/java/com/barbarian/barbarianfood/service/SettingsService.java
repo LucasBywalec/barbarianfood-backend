@@ -16,8 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-
 @Service
 @RequiredArgsConstructor
 public class SettingsService {
@@ -29,12 +27,12 @@ public class SettingsService {
 
     //TODO take the token from header, not from request - change API first
 
-    public ResponseEntity<DefaultResponse> editAddressInformation(AddressSettingsRequest request){
+    public ResponseEntity<DefaultResponse> editAddressInformation(final AddressSettingsRequest request){
         if(!SettingsServiceValidator.isAddressValid(request)){
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
         }
 
-        if(!jwtAuth.getExpirationDateFromToken(request.getToken()).after(new Date())){
+        if(jwtAuth.isTokenExpired(request.getToken())){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
 
@@ -50,12 +48,12 @@ public class SettingsService {
         return ResponseEntity.ok(null);
     }
 
-    public ResponseEntity<DefaultResponse> editPaymentInformation(PaymentSettingsRequest request){
+    public ResponseEntity<DefaultResponse> editPaymentInformation(final PaymentSettingsRequest request){
         if(!SettingsServiceValidator.isPaymentValid(request)){
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
         }
 
-        if(!jwtAuth.getExpirationDateFromToken(request.getToken()).after(new Date())){
+        if(jwtAuth.isTokenExpired(request.getToken())){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
 
@@ -71,12 +69,12 @@ public class SettingsService {
         return ResponseEntity.ok(null);
     }
 
-    public ResponseEntity<DefaultResponse> editProfileInformation(ProfileSettingsRequest request){
+    public ResponseEntity<DefaultResponse> editProfileInformation(final ProfileSettingsRequest request){
         if(!SettingsServiceValidator.isProfileSettingsRequestValid(request)){
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
         }
 
-        if(!jwtAuth.getExpirationDateFromToken(request.getToken()).after(new Date())){
+        if(jwtAuth.isTokenExpired(request.getToken())){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
 

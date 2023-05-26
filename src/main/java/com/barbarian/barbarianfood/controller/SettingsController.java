@@ -16,17 +16,17 @@ public class SettingsController implements SettingsApi {
     private final SettingsService settingsService;
 
     @Override
-    public ResponseEntity<DefaultResponse> editAddressInformation(AddressSettingsRequest addressSettingsRequest) {
+    public ResponseEntity<DefaultResponse> editAddressInformation(final AddressSettingsRequest addressSettingsRequest) {
         return settingsService.editAddressInformation(addressSettingsRequest);
     }
 
     @Override
-    public ResponseEntity<DefaultResponse> editPaymentInformation(PaymentSettingsRequest paymentSettingsRequest) {
+    public ResponseEntity<DefaultResponse> editPaymentInformation(final PaymentSettingsRequest paymentSettingsRequest) {
         return settingsService.editPaymentInformation(paymentSettingsRequest);
     }
 
     @Override
-    public ResponseEntity<DefaultResponse> editProfileInformation(ProfileSettingsRequest profileSettingsRequest) {
+    public ResponseEntity<DefaultResponse> editProfileInformation(final ProfileSettingsRequest profileSettingsRequest) {
         return settingsService.editProfileInformation(profileSettingsRequest);
     }
 }

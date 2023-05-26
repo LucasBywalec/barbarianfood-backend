@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SettingsServiceConverter {
 
     public static CustomerAddress addressSettingsRequestToCustomerAddress(
-            AddressSettingsRequest address, CustomerBase customerBase) {
+            final AddressSettingsRequest address, final CustomerBase customer) {
         return CustomerAddress.builder()
                 .city(address.getCity())
                 .buildingNumber(address.getBuildingNumber())
@@ -21,27 +21,27 @@ public class SettingsServiceConverter {
                 .street(address.getStreet())
                 .voivodeship(address.getVoivodeship())
                 .postalCode(address.getPostalCode())
-                .customerBase(customerBase)
+                .customerBase(customer)
                 .build();
     }
 
     public static CustomerPayment paymentSettingsRequestToCustomerPayment(
-            PaymentSettingsRequest request, CustomerBase customerBase) {
+            final PaymentSettingsRequest request, final CustomerBase customer) {
         return CustomerPayment.builder()
                 .creditCardNumber(request.getCreditCardNumber())
                 .creditCardExpDate(request.getCreditCardExpDate())
                 .creditCardOwner(request.getCreditCardOwner())
                 .creditCardSecret(request.getCreditCardSecret())
-                .customerBase(customerBase)
+                .customerBase(customer)
                 .build();
     }
 
     public static CustomerBase profileSettingsRequestToCustomerBase(
-            ProfileSettingsRequest request, CustomerBase customerBase, PasswordEncoder passwordEncoder) {
+            final ProfileSettingsRequest request, final CustomerBase customer, final PasswordEncoder passwordEncoder) {
         return CustomerBase.builder()
-                .address(customerBase.getAddress())
-                .payments(customerBase.getPayments())
-                .id(customerBase.getId())
+                .address(customer.getAddress())
+                .payments(customer.getPayments())
+                .id(customer.getId())
                 .name(request.getName())
                 .surname(request.getSurname())
                 .email(request.getEmail())

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @UtilityClass
 public class SettingsServiceValidator {
-    public static boolean isAddressValid(AddressSettingsRequest address) {
+    public static boolean isAddressValid(final AddressSettingsRequest address) {
         if(address.getStreet().isBlank()){
             return false;
         }
@@ -25,14 +25,10 @@ public class SettingsServiceValidator {
         if(address.getCity().isBlank()){
             return false;
         }
-        if(address.getPhoneNumber().isBlank() || address.getPhoneNumber().length() < 9){
-            return false;
-        }
-
-        return true;
+        return !address.getPhoneNumber().isBlank() && address.getPhoneNumber().length() >= 9;
     }
 
-    public static boolean isPaymentValid(PaymentSettingsRequest request) {
+    public static boolean isPaymentValid(final PaymentSettingsRequest request) {
         if(request.getCreditCardNumber().length() != 12){
             return false;
         }
@@ -42,13 +38,10 @@ public class SettingsServiceValidator {
         if(request.getCreditCardSecret().length() != 3){
             return false;
         }
-        if(!request.getCreditCardSecret().matches("\\p{L}+\\s+\\p{L}+")){
-            return false;
-        }
-        return true;
+        return request.getCreditCardSecret().matches("\\p{L}+\\s+\\p{L}+");
     }
 
-    public static boolean isProfileSettingsRequestValid(ProfileSettingsRequest request) {
+    public static boolean isProfileSettingsRequestValid(final ProfileSettingsRequest request) {
         String email = request.getEmail();
         if(email == null || email.isBlank() || !isEmailValid(email)){
             return false;
@@ -62,10 +55,7 @@ public class SettingsServiceValidator {
             return false;
         }
         String password = request.getPassword();
-        if(password == null || password.isBlank() || !isPasswordValid(password)){
-            return false;
-        }
-        return true;
+        return password != null && !password.isBlank() && isPasswordValid(password);
     }
 
     private boolean isPasswordValid(final String password) {

@@ -18,12 +18,12 @@ public class OfferController implements OfferApi {
     }
 
     @Override
-    public ResponseEntity<GetOfferDetailsResponse> getOfferDetails(String offerId) {
+    public ResponseEntity<GetOfferDetailsResponse> getOfferDetails(final String offerId) {
         return null;
     }
 
     @Override
-    public ResponseEntity<DefaultResponse> subscribeToOffer(String offerId, SubscribeRequest subscribeRequest) {
+    public ResponseEntity<DefaultResponse> subscribeToOffer(final String offerId, final SubscribeRequest subscribeRequest) {
         return null;
     }
 }
