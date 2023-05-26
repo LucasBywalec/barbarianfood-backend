@@ -30,7 +30,7 @@ public class AuthService {
         }
 
         if(customerRepository.findByEmail(request.getEmail()).isPresent()){
-            return ResponseEntity.status(HttpStatus.valueOf(422)).body(null);
+            return ResponseEntity.status(433).body(null);
         }
 
         customerRepository.save(AuthServiceConverter.SignUpRequestIntoCustomerBase(request, passwordEncoder));
