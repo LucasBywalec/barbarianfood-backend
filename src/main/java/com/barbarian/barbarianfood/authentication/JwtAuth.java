@@ -42,11 +42,6 @@ public class JwtAuth {
         return claims.getSubject();
     }
 
-//    public boolean validateToken(final String token, final String email) {
-//        String tokenId = getIdFromToken(token);
-//        return (tokenId.equals(email) && !isTokenExpired(token));
-//    } PROBABLY TO BE DELETED LATER
-
     public boolean isTokenExpired(final String token) {
         Date expirationDate = getExpirationDateFromToken(token);
         return expirationDate.before(new Date());

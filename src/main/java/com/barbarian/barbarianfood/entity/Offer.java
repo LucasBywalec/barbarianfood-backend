@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,5 +25,8 @@ public class Offer implements Serializable {
     private int kcalRangeBottom;
     private OfferPeriod period;
     private String contraindications;
-    private float cost;
+    private BigDecimal cost;
+
+    @OneToMany(mappedBy = "offer")
+    private List<CustomerBase> customers;
 }

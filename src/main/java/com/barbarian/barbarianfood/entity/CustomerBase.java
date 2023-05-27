@@ -28,4 +28,9 @@ public class CustomerBase implements Serializable {
 
     @OneToOne(mappedBy = "customerBase", cascade = CascadeType.ALL)
     private CustomerPayment payments;
+
+    @ManyToOne
+    @JoinColumn(name = "offer_id")
+    private Offer offer;
+
 }

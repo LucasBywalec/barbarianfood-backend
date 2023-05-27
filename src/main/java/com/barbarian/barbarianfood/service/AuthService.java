@@ -33,7 +33,7 @@ public class AuthService {
             return ResponseEntity.status(433).body(null);
         }
 
-        customerRepository.save(AuthServiceConverter.SignUpRequestIntoCustomerBase(request, passwordEncoder));
+        customerRepository.save(AuthServiceConverter.SignUpRequestToCustomerBase(request, passwordEncoder));
 
         return ResponseEntity.ok(null);
     }
