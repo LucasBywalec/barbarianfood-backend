@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class OfferServiceValidator {
-    public static boolean validateSubscribeRequest(SubscribeRequest request) {
+    public static boolean validateSubscribeRequest(final SubscribeRequest request) {
         return !request.getPeriodEnd().isBefore(request.getPeriodStart());
     }
 }
