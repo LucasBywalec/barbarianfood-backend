@@ -4,7 +4,7 @@ import com.barbarian.barbarianfood.authentication.JwtAuth;
 import com.barbarian.barbarianfood.repository.AddressRepository;
 import com.barbarian.barbarianfood.repository.CustomerRepository;
 import com.barbarian.barbarianfood.repository.PaymentRepository;
-import com.barbarian.barbarianfood.service.converters.SettingsServiceConverter;
+import com.barbarian.barbarianfood.service.converters.SettingsConverter;
 import com.barbarian.barbarianfood.service.validator.SettingsServiceValidator;
 import com.zaiapi.openapi.model.AddressSettingsRequest;
 import com.zaiapi.openapi.model.DefaultResponse;
@@ -42,7 +42,7 @@ public class SettingsService {
         }
 
         addressRepository.save(
-                SettingsServiceConverter.addressSettingsRequestToCustomerAddress(
+                SettingsConverter.addressSettingsRequestToCustomerAddress(
                         request, customerBase.get()));
 
         return ResponseEntity.ok(null);
@@ -63,7 +63,7 @@ public class SettingsService {
         }
 
         paymentRepository.save(
-                SettingsServiceConverter.paymentSettingsRequestToCustomerPayment(
+                SettingsConverter.paymentSettingsRequestToCustomerPayment(
                         request, customerBase.get()));
 
         return ResponseEntity.ok(null);
@@ -84,7 +84,7 @@ public class SettingsService {
         }
 
         customerRepository.save(
-                SettingsServiceConverter.profileSettingsRequestToCustomerBase(
+                SettingsConverter.profileSettingsRequestToCustomerBase(
                         request, customerBase.get(), passwordEncoder));
 
         return ResponseEntity.ok(null);
