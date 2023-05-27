@@ -5,7 +5,7 @@ import com.barbarian.barbarianfood.entity.CustomerBase;
 import com.barbarian.barbarianfood.entity.Offer;
 import com.barbarian.barbarianfood.repository.CustomerRepository;
 import com.barbarian.barbarianfood.repository.OfferRepository;
-import com.barbarian.barbarianfood.service.converters.OfferServiceConverter;
+import com.barbarian.barbarianfood.service.converters.OfferConverter;
 import com.barbarian.barbarianfood.service.validator.OfferServiceValidator;
 import com.zaiapi.openapi.model.DefaultResponse;
 import com.zaiapi.openapi.model.GetOfferDetailsResponse;
@@ -27,7 +27,7 @@ public class OfferService {
     public ResponseEntity<GetOfferResponse> getOffer() {
         GetOfferResponse response = new GetOfferResponse();
         response.setOfferList(offerRepository.findAll().stream().map(
-                OfferServiceConverter::OfferToOfferItem
+                OfferConverter::OfferToOfferItem
         ).toList());
 
         return ResponseEntity.ok(response);
@@ -37,12 +37,12 @@ public class OfferService {
         Optional<Offer> offer = offerRepository.findById(offerId);
 
         return offer.map(
-                value -> ResponseEntity.ok(OfferServiceConverter.OfferToOfferDetailsResponse(value)))
+                value -> ResponseEntity.ok(OfferConverter.OfferToOfferDetailsResponse(value)))
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
     }
 
     public ResponseEntity<DefaultResponse> subscribeToOffer(final String offerId, final SubscribeRequest request) {
-        if(!OfferServiceValidator.validateSubscribeRequest(request)){
+        if(!OfferServiceValidator.isSubscribeRequestValid(request)){
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
         }
 

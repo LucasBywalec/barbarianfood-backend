@@ -20,7 +20,6 @@ public class Offer implements Serializable {
     @Column(name = "id", nullable = false)
     private String id;
     private String title;
-    private OfferFor offerFor;
     private int kcalRangeTop;
     private int kcalRangeBottom;
     private OfferPeriod period;

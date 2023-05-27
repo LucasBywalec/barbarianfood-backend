@@ -6,7 +6,7 @@ import com.zaiapi.openapi.model.OfferItem;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class OfferServiceConverter {
+public class OfferConverter {
 
     public OfferItem OfferToOfferItem(final Offer offer){
         OfferItem item = new OfferItem();
@@ -22,7 +22,6 @@ public class OfferServiceConverter {
         GetOfferDetailsResponse item = new GetOfferDetailsResponse();
         item.setId(offer.getId());
         item.setTitle(offer.getTitle());
-        item.setFor(GetOfferDetailsResponse.ForEnum.valueOf(offer.getOfferFor().name()));
         item.setKcalRangeBottom(offer.getKcalRangeBottom());
         item.setKcalRangeTop(offer.getKcalRangeTop());
         item.setPeriod(GetOfferDetailsResponse.PeriodEnum.valueOf(offer.getPeriod().name()));

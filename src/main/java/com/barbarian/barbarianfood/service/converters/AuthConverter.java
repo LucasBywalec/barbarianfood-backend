@@ -7,7 +7,7 @@ import lombok.experimental.UtilityClass;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @UtilityClass
-public class AuthServiceConverter {
+public class AuthConverter {
 
     public CustomerBase SignUpRequestToCustomerBase(final SignUpRequest request, final PasswordEncoder passwordEncoder) {
         String hashedPassword = passwordEncoder.encode(request.getPassword());

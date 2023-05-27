@@ -3,7 +3,7 @@ package com.barbarian.barbarianfood.service;
 import com.barbarian.barbarianfood.authentication.JwtAuth;
 import com.barbarian.barbarianfood.entity.CustomerBase;
 import com.barbarian.barbarianfood.repository.CustomerRepository;
-import com.barbarian.barbarianfood.service.converters.AuthServiceConverter;
+import com.barbarian.barbarianfood.service.converters.AuthConverter;
 import com.barbarian.barbarianfood.service.validator.AuthServiceValidator;
 import com.zaiapi.openapi.model.DefaultResponse;
 import com.zaiapi.openapi.model.SignInRequest;
@@ -33,7 +33,7 @@ public class AuthService {
             return ResponseEntity.status(433).body(null);
         }
 
-        customerRepository.save(AuthServiceConverter.SignUpRequestToCustomerBase(request, passwordEncoder));
+        customerRepository.save(AuthConverter.SignUpRequestToCustomerBase(request, passwordEncoder));
 
         return ResponseEntity.ok(null);
     }

@@ -10,7 +10,7 @@ import lombok.experimental.UtilityClass;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @UtilityClass
-public class SettingsServiceConverter {
+public class SettingsConverter {
 
     public static CustomerAddress addressSettingsRequestToCustomerAddress(
             final AddressSettingsRequest address, final CustomerBase customer) {

@@ -2,10 +2,7 @@ package com.barbarian.barbarianfood.controller;
 
 import com.barbarian.barbarianfood.service.AdminService;
 import com.zaiapi.openapi.api.AdminApi;
-import com.zaiapi.openapi.model.AddNewOfferRequest;
-import com.zaiapi.openapi.model.DefaultResponse;
-import com.zaiapi.openapi.model.ListAllOffersResponse;
-import com.zaiapi.openapi.model.ListAllUsersResponse;
+import com.zaiapi.openapi.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,17 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController implements AdminApi {
     private final AdminService adminService;
     @Override
-    public ResponseEntity<DefaultResponse> addNewOffer(final AddNewOfferRequest addNewOfferRequest) {
-        return null;
+    public ResponseEntity<DefaultResponse> addNewOffer(final AddNewOfferRequest request) {
+        return adminService.addNewOffer(request);
     }
 
     @Override
-    public ResponseEntity<ListAllOffersResponse> listAllOffers() {
-        return null;
+    public ResponseEntity<GetOfferResponse> listAllOffers() {
+        return adminService.listAllOffers();
     }
 
     @Override
     public ResponseEntity<ListAllUsersResponse> listAllUsers() {
-        return null;
+        return adminService.listAllUsers();
     }
 }
