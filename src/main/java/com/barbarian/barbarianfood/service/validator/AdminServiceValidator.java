@@ -1,6 +1,5 @@
 package com.barbarian.barbarianfood.service.validator;
 
-import com.barbarian.barbarianfood.entity.OfferPeriod;
 import com.zaiapi.openapi.model.AddNewOfferRequest;
 import lombok.experimental.UtilityClass;
 
@@ -22,12 +21,6 @@ public class AdminServiceValidator {
             return false;
         }
         BigDecimal cost = request.getCost();
-        if(cost == null || cost.floatValue() < 0){
-            return false;
-        }
-        AddNewOfferRequest.PeriodEnum val = request.getPeriod();
-        return val != null
-                && !val.name().equals(OfferPeriod.SHORT_TERM.name())
-                && !val.name().equals(OfferPeriod.LONG_TERM.name());
+        return cost != null && !(cost.floatValue() < 0);
     }
 }
