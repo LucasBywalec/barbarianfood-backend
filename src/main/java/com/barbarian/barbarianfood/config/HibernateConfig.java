@@ -6,6 +6,7 @@ import com.barbarian.barbarianfood.entity.CustomerPayment;
 import com.barbarian.barbarianfood.entity.Offer;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManagerFactory;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,10 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
+@RequiredArgsConstructor
 public class HibernateConfig {
-
-    @Autowired
-    private EntityManagerFactory entityManagerFactory;
+    final private EntityManagerFactory entityManagerFactory;
 
     @PostConstruct
     public void init() {

@@ -8,6 +8,7 @@ import com.zaiapi.openapi.model.PaymentSettingsRequest;
 import com.zaiapi.openapi.model.ProfileSettingsRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,16 +17,19 @@ public class SettingsController implements SettingsApi {
     private final SettingsService settingsService;
 
     @Override
+    @CrossOrigin(origins = "*")
     public ResponseEntity<DefaultResponse> editAddressInformation(final AddressSettingsRequest addressSettingsRequest) {
         return settingsService.editAddressInformation(addressSettingsRequest);
     }
 
     @Override
+    @CrossOrigin(origins = "*")
     public ResponseEntity<DefaultResponse> editPaymentInformation(final PaymentSettingsRequest paymentSettingsRequest) {
         return settingsService.editPaymentInformation(paymentSettingsRequest);
     }
 
     @Override
+    @CrossOrigin(origins = "*")
     public ResponseEntity<DefaultResponse> editProfileInformation(final ProfileSettingsRequest profileSettingsRequest) {
         return settingsService.editProfileInformation(profileSettingsRequest);
     }
