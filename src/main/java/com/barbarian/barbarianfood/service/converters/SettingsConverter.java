@@ -9,6 +9,8 @@ import com.zaiapi.openapi.model.ProfileSettingsRequest;
 import lombok.experimental.UtilityClass;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.time.LocalDate;
+
 @UtilityClass
 public class SettingsConverter {
 
@@ -28,8 +30,8 @@ public class SettingsConverter {
     public static CustomerPayment paymentSettingsRequestToCustomerPayment(
             final PaymentSettingsRequest request, final CustomerBase customer) {
         return CustomerPayment.builder()
-                .creditCardNumber(request.getCreditCardNumber())
-                .creditCardExpDate(request.getCreditCardExpDate())
+                .creditCardNumber(request.getCreditCardNumber().toString())
+                .creditCardExpDate(LocalDate.parse(request.getCreditCardExpDate()))
                 .creditCardOwner(request.getCreditCardOwner())
                 .creditCardSecret(request.getCreditCardSecret())
                 .customerBase(customer)

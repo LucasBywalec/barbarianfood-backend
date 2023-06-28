@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 @RequiredArgsConstructor
 public class SettingsService {
@@ -41,9 +43,22 @@ public class SettingsService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
 
-        addressRepository.save(
-                SettingsConverter.addressSettingsRequestToCustomerAddress(
-                        request, customerBase.get()));
+        var possibleAddress = addressRepository.findByCustomerBase(customerBase.get());
+        if(possibleAddress.isEmpty()) {
+            addressRepository.save(
+                    SettingsConverter.addressSettingsRequestToCustomerAddress(
+                            request, customerBase.get()));
+        }
+        else {
+            var address = possibleAddress.get();
+            address.setBuildingNumber(request.getBuildingNumber());
+            address.setCity(address.getCity());
+            address.setPhoneNumber(address.getPhoneNumber());
+            address.setStreet(address.getStreet());
+            address.setVoivodeship(address.getVoivodeship());
+            address.setPostalCode(address.getPostalCode());
+            addressRepository.save(address);
+        }
 
         return ResponseEntity.ok(null);
     }
@@ -62,9 +77,20 @@ public class SettingsService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
 
-        paymentRepository.save(
-                SettingsConverter.paymentSettingsRequestToCustomerPayment(
-                        request, customerBase.get()));
+        var possiblePayment = paymentRepository.findByCustomerBase(customerBase.get());
+        if(possiblePayment.isEmpty()) {
+            paymentRepository.save(
+                    SettingsConverter.paymentSettingsRequestToCustomerPayment(
+                            request, customerBase.get()));
+        }
+        else {
+            var payment = possiblePayment.get();
+            payment.setCreditCardNumber(request.getCreditCardNumber().toString());
+            payment.setCreditCardExpDate(LocalDate.parse(request.getCreditCardExpDate()));
+            payment.setCreditCardOwner(request.getCreditCardOwner());
+            payment.setCreditCardSecret(request.getCreditCardSecret());
+            paymentRepository.save(payment);
+        }
 
         return ResponseEntity.ok(null);
     }

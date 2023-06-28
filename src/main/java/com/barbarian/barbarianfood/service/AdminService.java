@@ -50,4 +50,12 @@ public class AdminService {
                         )
         );
     }
+
+    public void deleteUser(String id) {
+        customerRepository.deleteById(id);
+    }
+
+    public void deleteOffer(String id) {
+        offerRepository.deleteById(id);
+    }
 }

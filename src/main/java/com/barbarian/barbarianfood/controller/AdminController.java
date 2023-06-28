@@ -6,6 +6,7 @@ import com.zaiapi.openapi.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -28,5 +29,21 @@ public class AdminController implements AdminApi {
     @CrossOrigin(origins = "*")
     public ResponseEntity<ListAllUsersResponse> listAllUsers() {
         return adminService.listAllUsers();
+    }
+
+    @CrossOrigin(origins = "*")
+    @DeleteMapping("/admin/delete-user")
+    public ResponseEntity<String> deleteUser(String id){
+        adminService.deleteUser(id);
+
+        return ResponseEntity.ok("ok");
+    }
+
+    @CrossOrigin(origins = "*")
+    @DeleteMapping("/admin/delete-offer")
+    public ResponseEntity<String> deleteOffer(String id){
+        adminService.deleteOffer(id);
+
+        return ResponseEntity.ok("ok");
     }
 }

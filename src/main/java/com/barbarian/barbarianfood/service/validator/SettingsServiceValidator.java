@@ -29,16 +29,16 @@ public class SettingsServiceValidator {
     }
 
     public static boolean isPaymentValid(final PaymentSettingsRequest request) {
-        if(request.getCreditCardNumber().length() != 12){
+        if((request.getCreditCardNumber().toString()).length() != 12){
             return false;
         }
-        if(request.getCreditCardExpDate().isBefore(LocalDate.now())){
+        if(LocalDate.parse(request.getCreditCardExpDate()).isBefore(LocalDate.now())){
             return false;
         }
         if(request.getCreditCardSecret().length() != 3){
             return false;
         }
-        return request.getCreditCardSecret().matches("\\p{L}+\\s+\\p{L}+");
+        return request.getCreditCardOwner().matches("\\p{L}+\\s+\\p{L}+");
     }
 
     public static boolean isProfileSettingsRequestValid(final ProfileSettingsRequest request) {

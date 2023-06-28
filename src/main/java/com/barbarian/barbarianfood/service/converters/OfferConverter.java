@@ -9,6 +9,7 @@ import lombok.experimental.UtilityClass;
 public class OfferConverter {
 
     public OfferItem OfferToOfferItem(final Offer offer){
+        System.out.println(offer);
         OfferItem item = new OfferItem();
         item.setId(offer.getId());
         item.setTitle(offer.getTitle());

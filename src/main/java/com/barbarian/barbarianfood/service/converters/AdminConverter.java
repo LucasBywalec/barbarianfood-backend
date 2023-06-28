@@ -19,12 +19,14 @@ public class AdminConverter {
     }
 
     public static UserItem customerBaseToUserItem(CustomerBase customer) {
+        System.out.println(customer);
         UserItem user = new UserItem();
         user.setId(customer.getId());
         user.setName(customer.getName());
         user.setSurname(customer.getSurname());
         user.setEmail(customer.getEmail());
-        user.setActiveSubscription(customer.getOffer().getTitle());
+        var possibleOffer = customer.getOffer();
+        user.setActiveSubscription(possibleOffer == null ? "None" : possibleOffer.getTitle());
 
         return user;
     }

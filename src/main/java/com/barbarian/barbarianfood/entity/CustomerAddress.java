@@ -25,7 +25,6 @@ public class CustomerAddress implements Serializable {
     private String phoneNumber;
 
     @OneToOne
-    @MapsId
     @JoinColumn(name = "customer_id")
     private CustomerBase customerBase;
 }
