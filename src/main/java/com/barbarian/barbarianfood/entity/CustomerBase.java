@@ -22,6 +22,7 @@ public class CustomerBase implements Serializable {
     @Column(unique = true)
     private String email;
     private String password;
+    private UserRole role;
 
     @OneToOne(mappedBy = "customerBase", cascade = CascadeType.ALL)
     private CustomerAddress address;

@@ -9,6 +9,7 @@ import com.zaiapi.openapi.model.SignUpRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -26,5 +27,11 @@ public class AuthController implements AuthApi {
     @CrossOrigin(origins = "*")
     public ResponseEntity<DefaultResponse> signUp(final SignUpRequest signUpRequest) {
         return authService.createCustomer(signUpRequest);
+    }
+
+    @GetMapping("/auth/role")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<String> role(final String token) {
+        return authService.role(token);
     }
 }

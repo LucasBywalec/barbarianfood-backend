@@ -55,4 +55,15 @@ public class AuthService {
 
         return ResponseEntity.ok(response);
     }
+
+    public ResponseEntity<String> role(String token) {
+        if(jwtAuth.isTokenExpired(token)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+        }
+
+        Optional<CustomerBase> customerOptional = customerRepository.findById(jwtAuth.getIdFromToken(token));
+        String role = customerOptional.isPresent() ? customerOptional.get().getRole().toString() : "";
+
+        return ResponseEntity.status(HttpStatus.OK).body(role);
+    }
 }
